@@ -1,0 +1,6 @@
+[
+  { "id": "1", "title": "Dapodik", "url": "https://dapo.kemdikbud.go.id/", "icon": "Globe" },
+  { "id": "2", "title": "PMM", "url": "https://guru.kemdikbud.go.id/", "icon": "Globe" },
+  { "id": "3", "title": "Arkas", "url": "https://arkas.kemdikbud.go.id/", "icon": "Globe" },
+  { "id": "4", "title": "E-Kinerja", "url": "https://kinerja.bkn.go.id/", "icon": "Globe" }
+]
