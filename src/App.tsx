@@ -146,17 +146,22 @@ export default function App() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-screen w-full bg-slate-50 text-slate-900 overflow-hidden font-sans">
+      <div className="flex h-screen w-full bg-blue-50 text-slate-900 overflow-hidden font-sans">
         {/* Sidebar */}
         <motion.aside 
           initial={{ x: -300, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="w-80 bg-white border-r border-slate-200 flex flex-col z-20 shadow-xl"
+          className="w-80 bg-blue-50/50 backdrop-blur-xl border-r border-blue-100 flex flex-col z-20 shadow-2xl"
         >
-          <div className="p-6 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 text-white">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-lg">
-                <LayoutDashboard className="w-6 h-6 text-white" />
+          <div className="p-6 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md p-1.5 shadow-xl flex items-center justify-center overflow-hidden border border-white/30">
+                <img 
+                  src="https://iili.io/KDFk4fI.png" 
+                  alt="Logo" 
+                  className="w-full h-full object-contain brightness-0 invert"
+                  referrerPolicy="no-referrer"
+                />
               </div>
               <div>
                 <h1 className="font-display font-bold text-lg leading-tight">KEPSEK</h1>
@@ -165,17 +170,17 @@ export default function App() {
             </div>
 
             <div className="relative mb-2">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/70" />
               <Input 
                 placeholder="Cari aplikasi..." 
-                className="pl-10 bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:bg-white/30 transition-all rounded-xl border-none"
+                className="pl-10 bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:bg-white/30 transition-all rounded-2xl border-none shadow-inner"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
 
-          <div className="p-4 flex items-center justify-between px-6 border-b border-slate-100">
+          <div className="p-4 flex items-center justify-between px-6 border-b border-blue-100 bg-white/50">
             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Menu Utama</span>
             <Dialog open={isAddDialogOpen} onOpenChange={(open) => {
               setIsAddDialogOpen(open);
@@ -185,11 +190,11 @@ export default function App() {
               }
             }}>
               <DialogTrigger render={
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-slate-100">
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-xl hover:bg-blue-100">
                   <Plus className="w-4 h-4 text-slate-600" />
                 </Button>
               } />
-              <DialogContent className="bg-white border-slate-200 text-slate-900">
+              <DialogContent className="bg-white border-blue-100 text-slate-900 rounded-3xl">
                 <DialogHeader>
                   <DialogTitle className="font-display text-xl text-slate-900">{editingLink ? "Edit Link" : "Tambah Link Baru"}</DialogTitle>
                 </DialogHeader>
@@ -200,7 +205,7 @@ export default function App() {
                       placeholder="Contoh: Dapodik" 
                       value={newLink.title}
                       onChange={(e) => setNewLink({ ...newLink, title: e.target.value })}
-                      className="bg-slate-50 border-slate-200"
+                      className="bg-blue-50/50 border-blue-100 rounded-xl"
                     />
                   </div>
                   <div className="space-y-2">
@@ -209,13 +214,13 @@ export default function App() {
                       placeholder="https://..." 
                       value={newLink.url}
                       onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
-                      className="bg-slate-50 border-slate-200"
+                      className="bg-blue-50/50 border-blue-100 rounded-xl"
                     />
                   </div>
                 </div>
                 <DialogFooter>
                   <Button variant="ghost" onClick={() => setIsAddDialogOpen(false)}>Batal</Button>
-                  <Button onClick={handleAddLink} className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-none">
+                  <Button onClick={handleAddLink} className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-none rounded-xl shadow-lg shadow-purple-200">
                     {editingLink ? "Simpan Perubahan" : "Tambah Sekarang"}
                   </Button>
                 </DialogFooter>
@@ -223,8 +228,8 @@ export default function App() {
             </Dialog>
           </div>
 
-          <ScrollArea className="flex-1 px-4 py-4">
-            <div className="space-y-3 pb-6">
+          <ScrollArea className="flex-1 px-4 py-4 bg-white/30">
+            <div className="space-y-4 pb-6">
               <AnimatePresence mode="popLayout">
                 {filteredLinks.map((link, index) => {
                   const colors = [
@@ -259,11 +264,11 @@ export default function App() {
                           "w-full group relative flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 text-left cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-purple-500",
                           activeLink?.id === link.id 
                             ? "bg-white shadow-2xl scale-[1.02] ring-1 ring-slate-100" 
-                            : "hover:bg-slate-50 text-slate-600 hover:text-slate-900"
+                            : "hover:bg-white/60 hover:shadow-lg hover:translate-y-[-2px] text-slate-600 hover:text-slate-900"
                         )}
                       >
                         <div className={cn(
-                          "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg text-white",
+                          "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-md text-white",
                           activeLink?.id === link.id ? colorClass : "bg-slate-200 group-hover:bg-slate-300"
                         )}>
                           <Globe className="w-6 h-6" />
@@ -280,7 +285,7 @@ export default function App() {
                           <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="h-8 w-8 rounded-lg hover:bg-slate-200"
+                            className="h-8 w-8 rounded-xl hover:bg-slate-100"
                             onClick={(e) => handleEditLink(link, e)}
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -288,7 +293,7 @@ export default function App() {
                           <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="h-8 w-8 rounded-lg hover:bg-red-100 hover:text-red-500"
+                            className="h-8 w-8 rounded-xl hover:bg-red-50 hover:text-red-500"
                             onClick={(e) => handleDeleteLink(link.id, e)}
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -302,13 +307,13 @@ export default function App() {
             </div>
           </ScrollArea>
 
-          <div className="p-6 mt-auto border-t border-slate-100 bg-slate-50/50">
+          <div className="p-6 mt-auto border-t border-blue-100 bg-blue-50/80">
             <div className="grid grid-cols-2 gap-3">
               <Button 
                 variant="outline" 
                 size="sm" 
                 onClick={handleBackup}
-                className="bg-white border-slate-200 hover:bg-slate-50 text-xs gap-2 rounded-xl h-10 shadow-sm"
+                className="bg-white border-blue-100 hover:bg-blue-50 text-xs gap-2 rounded-xl h-10 shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" /> Backup
               </Button>
@@ -322,7 +327,7 @@ export default function App() {
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="w-full bg-white border-slate-200 hover:bg-slate-50 text-xs gap-2 rounded-xl h-10 shadow-sm"
+                  className="w-full bg-white border-blue-100 hover:bg-blue-50 text-xs gap-2 rounded-xl h-10 shadow-sm"
                 >
                   <Upload className="w-3.5 h-3.5" /> Upload
                 </Button>
@@ -332,8 +337,8 @@ export default function App() {
         </motion.aside>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col relative overflow-hidden bg-slate-50">
-          <header className="h-16 flex items-center justify-between px-8 border-b border-slate-200 bg-white/80 backdrop-blur-md z-10">
+        <main className="flex-1 flex flex-col relative overflow-hidden bg-blue-50/30">
+          <header className="h-16 flex items-center justify-between px-8 border-b border-blue-100 bg-white/80 backdrop-blur-md z-10">
             <div className="flex items-center gap-4">
               <AnimatePresence mode="wait">
                 {activeLink ? (
@@ -376,8 +381,8 @@ export default function App() {
                 <span className="text-xs font-bold text-slate-900">Admin KEPSEK</span>
                 <span className="text-[10px] text-slate-500">SMPN 7 Pasuruan</span>
               </div>
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 p-0.5 shadow-lg">
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 p-0.5 shadow-lg">
+                <div className="w-full h-full rounded-2xl bg-white flex items-center justify-center overflow-hidden">
                   <img 
                     src="https://api.dicebear.com/7.x/avataaars/svg?seed=Fadilah" 
                     alt="Avatar" 
@@ -388,7 +393,7 @@ export default function App() {
             </div>
           </header>
 
-          <div className="flex-1 bg-white relative">
+          <div className="flex-1 bg-white/40 relative">
             <AnimatePresence mode="wait">
               {activeLink ? (
                 <motion.div
@@ -408,13 +413,13 @@ export default function App() {
                   />
                 </motion.div>
               ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-slate-50/30">
+                <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="max-w-md"
                   >
-                    <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center mb-8 mx-auto shadow-2xl shadow-purple-200">
+                    <div className="w-24 h-24 rounded-[2rem] bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 flex items-center justify-center mb-8 mx-auto shadow-2xl shadow-purple-200">
                       <LayoutDashboard className="w-12 h-12 text-white" />
                     </div>
                     <h3 className="text-3xl font-display font-bold mb-4 text-slate-900">Selamat Datang</h3>
@@ -422,15 +427,15 @@ export default function App() {
                       Dashboard Portofolio Prestasi. Kelola dan tampilkan pencapaian Anda dengan desain yang ceria dan profesional.
                     </p>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm text-left">
-                        <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center mb-3">
+                      <div className="p-5 rounded-3xl bg-white border border-blue-50 shadow-sm text-left hover:shadow-md transition-shadow">
+                        <div className="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center mb-3">
                           <Plus className="w-5 h-5 text-pink-600" />
                         </div>
                         <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Tambah</p>
                         <p className="text-sm text-slate-600 font-medium">Tambah prestasi baru.</p>
                       </div>
-                      <div className="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm text-left">
-                        <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center mb-3">
+                      <div className="p-5 rounded-3xl bg-white border border-blue-50 shadow-sm text-left hover:shadow-md transition-shadow">
+                        <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
                           <Download className="w-5 h-5 text-purple-600" />
                         </div>
                         <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Backup</p>
@@ -443,8 +448,8 @@ export default function App() {
             </AnimatePresence>
 
             {/* Background decorative elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-pink-200/20 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-200/20 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/30 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-100/20 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
           </div>
         </main>
         <Toaster position="top-right" theme="light" closeButton />

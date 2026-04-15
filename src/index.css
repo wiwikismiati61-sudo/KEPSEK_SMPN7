@@ -11,28 +11,28 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-50 antialiased overflow-hidden;
+    @apply bg-blue-50 text-slate-900 antialiased overflow-hidden;
     font-family: var(--font-sans);
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+    @apply bg-white/90 backdrop-blur-xl border border-blue-100 shadow-xl;
   }
   
   .glass-sidebar {
-    @apply bg-black/20 backdrop-blur-2xl border-r border-white/5;
+    @apply bg-blue-50/80 backdrop-blur-2xl border-r border-blue-100;
   }
 
   .three-d-button {
-    @apply relative transition-all duration-300 active:translate-y-0.5 active:shadow-inner;
-    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+    @apply relative transition-all duration-200 active:translate-y-0.5 active:shadow-inner;
+    box-shadow: 0 4px 0 0 rgba(139, 92, 246, 0.2);
   }
 
   .three-d-button:hover {
     @apply -translate-y-0.5;
-    box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 0 0 rgba(139, 92, 246, 0.2);
   }
 }
 
@@ -46,7 +46,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  @apply bg-blue-200 rounded-full hover:bg-blue-300 transition-colors;
 }
 
 @import "tw-animate-css";
