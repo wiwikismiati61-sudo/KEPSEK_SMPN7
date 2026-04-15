@@ -419,6 +419,14 @@ export default function App() {
                     animate={{ opacity: 1, y: 0 }}
                     className="max-w-md"
                   >
+                    <div className="mb-6 flex justify-center">
+                      <img 
+                        src="https://iili.io/KDFk4fI.png" 
+                        alt="Logo" 
+                        className="h-20 w-auto object-contain drop-shadow-xl"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
                     <div className="w-24 h-24 rounded-[2rem] bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 flex items-center justify-center mb-8 mx-auto shadow-2xl shadow-purple-200">
                       <LayoutDashboard className="w-12 h-12 text-white" />
                     </div>
